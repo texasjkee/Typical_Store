@@ -1,9 +1,11 @@
-const Home= () => {
+import Poster from "../Poster/Poster";
+
+const Home = () => {
   return (
     <div>
-     <h1>Home</h1> 
+      <Poster />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

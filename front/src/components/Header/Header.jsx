@@ -13,8 +13,9 @@ const Header = () => {
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
-        <Link to={ROUTES.HOME} />
-        <img src={LOGO} alt="Stuff" />
+        <Link to={ROUTES.HOME}>
+          <img src={LOGO} alt="Stuff" />
+        </Link>
       </div>
 
       <div className={styles.info}>
