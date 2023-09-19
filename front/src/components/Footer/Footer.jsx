@@ -19,7 +19,7 @@ const Footer = () => {
       </div>
 
       <div className={styles.socials}>
-        <a href="https://www.github.com/texasjkee">TexasJkee</a>
+        <a href="https://www.github.com/texasjkee"></a>
         <svg className="icon">
           <use xlinkHref={`${sprite}#instagram`} />
         </svg>

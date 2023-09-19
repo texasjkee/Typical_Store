@@ -5,7 +5,7 @@ import { BASE_URL } from "../../../utils/urls";
 
 const initialState = {
   list: [],
-  filtred: [],
+  filtered: [],
   related: [],
   isLoading: false,
 }
@@ -26,6 +26,12 @@ export const getProducts = createAsyncThunk(
 const productsSlice = createSlice({
   name: 'products',
   initialState,
+  reducers: {
+    filterByPrice: (state, { payload }) => {
+      console.log(payload)
+      state.filtered = state.list.filter(({ price }) => price < payload);
+    },
+  },
   extraReducers: builder => {
     builder.addCase(getProducts.pending, (state, { payload }) => {
       state.isLoading = true;
@@ -39,5 +45,7 @@ const productsSlice = createSlice({
     })
   }
 });
+
+export const { filterByPrice } = productsSlice.actions;
 
 export default productsSlice.reducer;
