@@ -5,6 +5,7 @@ import { BASE_URL } from "../../../utils/urls";
 
 const initialState = {
   list: [],
+  isLoading: false
 }
 
 export const getCategories = createAsyncThunk(
@@ -22,10 +23,7 @@ export const getCategories = createAsyncThunk(
 
 const categoriesSlice = createSlice({
   name: 'categories',
-  initialState: {
-    list: [],
-    isLoading: false
-  },
+  initialState,
   extraReducers: builder => {
     builder.addCase(getCategories.pending, (state, { payload }) => {
       state.isLoading = true;
@@ -34,7 +32,7 @@ const categoriesSlice = createSlice({
       state.list = payload;
       state.isLoading = false;
     })
-    builder.addCase(getCategories.fulfilled, (state) => {
+    builder.addCase(getCategories.rejected, (state) => {
       state.isLoading = false;
     })
   }
