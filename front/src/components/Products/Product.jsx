@@ -1,20 +1,30 @@
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
+import { addItemToCart } from "../redux/user/userSlice";
 
 import styles from "../../styles/Product.module.css";
-import { useEffect, useState } from "react";
 
 const SIZES = [4, 4.5, 5];
 
-const Product = ({ images, title, price, description }) => {
+const Product = (item) => {
+  const { images, title, price, description } = item;
+
   const [currentImage, setCurrentImage] = useState();
   const [currentSize, setCurrentSize] = useState();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!images.length) return;
 
     setCurrentImage(images[0]);
-  }, []);
+  }, [images]);
+
+  const handlerAddToCart = () => {
+    dispatch(addItemToCart(item));
+  };
 
   return (
     <div className={styles.product}>
@@ -44,7 +54,9 @@ const Product = ({ images, title, price, description }) => {
               {SIZES.map((size) => (
                 <div
                   onClick={() => setCurrentSize(size)}
-                  className={`${styles.size} ${currentSize === size ? styles.active : ""}`}
+                  className={`${styles.size} ${
+                    currentSize === size ? styles.active : ""
+                  }`}
                   key={size}
                 >
                   {size}
@@ -56,7 +68,13 @@ const Product = ({ images, title, price, description }) => {
           <p className={styles.description}>{description}</p>
 
           <div className={styles.actions}>
-            <button className={styles.add} disabled={!currentSize}>Add to cart</button>
+            <button
+              onClick={() => handlerAddToCart}
+              className={styles.add}
+              disabled={!currentSize}
+            >
+              Add to cart
+            </button>
             <button className={styles.favourite}>Add to favourites</button>
           </div>
 

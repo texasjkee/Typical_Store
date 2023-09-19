@@ -26,7 +26,7 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    addIteamToCart: (state, { payload }) => {
+    addItemToCart: (state, { payload }) => {
       let newCart = [...state.cart];
       const found = state.cart.find(cart => cart.id === payload.id)
 
@@ -54,6 +54,6 @@ const userSlice = createSlice({
   }
 });
 
-export const { addIteamToCart } = userSlice.actions;
+export const { addItemToCart } = userSlice.actions;
 
 export default userSlice.reducer;
