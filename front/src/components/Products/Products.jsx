@@ -41,4 +41,3 @@ const Products = ({ title, style = {}, products = [], amount }) => {
 };
 
 export default Products;
-
